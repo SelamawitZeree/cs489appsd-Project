@@ -1,4 +1,4 @@
-package lab2b.app;
+package main.lab2.lab2b.app;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
