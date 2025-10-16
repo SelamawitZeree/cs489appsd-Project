@@ -1,0 +1,32 @@
+<!DOCTYPE html><html xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="fragments/header :: *"></th:block>
+<h2>Patients</h2>
+
+<form method="get" action="#" class="inline-form">
+    <input type="text" name="q" th:value="${q}" placeholder="Search name/email/phone"/>
+    <button type="submit">Search</button>
+    <a th:href="@{/ui/patients}" class="btn">Reset</a>
+    <a th:href="@{/ui/patients/new}" class="btn primary">+ New Patient</a>
+</form>
+
+<table class="table">
+    <thead><tr><th>ID</th><th>Name</th><th>Email</th><th>Phone</th><th>Address</th><th></th></tr></thead>
+    <tbody>
+    <tr th:each="p : ${patients}">
+        <td th:text="${p.patientId}">1</td>
+        <td th:text="${p.firstName + ' ' + p.lastName}">Name</td>
+        <td th:text="${p.email}">email</td>
+        <td th:text="${p.phone}">phone</td>
+        <td th:text="${p.primaryAddress} != null ? ${p.primaryAddress.street + ', ' + p.primaryAddress.city} : '-'">addr</td>
+        <td>
+            <a th:href="@{'/ui/patients/' + ${p.patientId}}">View</a>
+            <a th:href="@{'/ui/patients/' + ${p.patientId} + '/edit'}">Edit</a>
+            <form th:action="@{'/ui/patients/' + ${p.patientId} + '/delete'}" method="post" class="inline-form">
+                <button class="danger" type="submit">Delete</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<th:block th:replace="fragments/footer :: *"></th:block>
+</html>

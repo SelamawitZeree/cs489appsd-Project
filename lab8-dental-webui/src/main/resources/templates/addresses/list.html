@@ -1,0 +1,18 @@
+<!DOCTYPE html><html xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="fragments/header :: *"></th:block>
+<h2>Addresses</h2>
+<table class="table">
+    <thead><tr><th>ID</th><th>Street</th><th>City</th><th>State</th><th>Zip</th><th>Patient</th></tr></thead>
+    <tbody>
+    <tr th:each="a : ${addresses}">
+        <td th:text="${a.addressId}"></td>
+        <td th:text="${a.street}"></td>
+        <td th:text="${a.city}"></td>
+        <td th:text="${a.state}"></td>
+        <td th:text="${a.zipCode}"></td>
+        <td><a th:href="@{'/ui/patients/' + ${a.patientId}}" th:text="${a.patientFullName}"></a></td>
+    </tr>
+    </tbody>
+</table>
+<th:block th:replace="fragments/footer :: *"></th:block>
+</html>

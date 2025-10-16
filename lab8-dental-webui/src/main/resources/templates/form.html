@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="fragments/header :: *"></th:block>
+
+<h2 th:text="${p.patientId != null} ? 'Edit Patient' : 'New Patient'"></h2>
+
+<form th:action="${p.patientId != null} ? @{'/ui/patients/' + ${p.patientId}} : @{/ui/patients}"
+      method="post" th:object="${p}" class="form">
+
+    <div class="grid">
+        <label>First Name <input th:field="*{firstName}" required/></label>
+        <label>Last Name  <input th:field="*{lastName}"  required/></label>
+        <label>Email      <input th:field="*{email}"     type="email"/></label>
+        <label>Phone      <input th:field="*{phone}"/></label>
+        <label>DOB        <input th:field="*{dateOfBirth}" type="date"/></label>
+    </div>
+
+    <h3>Primary Address</h3>
+    <div class="grid">
+        <label>Street <input th:field="*{primaryAddress.street}"/></label>
+        <label>City   <input th:field="*{primaryAddress.city}"/></label>
+        <label>State  <input th:field="*{primaryAddress.state}"/></label>
+        <label>Zip    <input th:field="*{primaryAddress.zipCode}"/></label>
+    </div>
+
+    <div class="actions">
+        <button class="primary" type="submit">Save</button>
+        <a th:href="@{/ui/patients}" class="btn">Cancel</a>
+    </div>
+</form>
+
+<th:block th:replace="fragments/footer :: *"></th:block>
+</html>

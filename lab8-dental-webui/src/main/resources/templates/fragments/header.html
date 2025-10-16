@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title th:text="${title} ?: 'ADS Dental'">ADS Dental</title>
+  <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" th:href="@{/ui}">ADS Dental</a>
+  <nav>
+    <a th:href="@{/ui/patients}">Patients</a>
+    <a th:href="@{/ui/addresses}">Addresses</a>
+  </nav>
+</header>
+<main class="container">
